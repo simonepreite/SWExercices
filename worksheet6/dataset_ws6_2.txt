@@ -1,0 +1,129 @@
+Simone Preite 3885035
+
+Exercise 1:
+
+PREFIX ex: <http://example.org/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+CONSTRUCT {
+  ?X rdf:type ?obj
+}
+WHERE{
+  ?X ex:is_a ?obj
+}
+
+Exercise 2:
+CONSTRUCT {
+  ?X rdf:type ?obj
+}
+WHERE{
+  ?A rdfs:domain ?obj
+  ?X      ?A     ?Z
+}
+
+
+
+Exercise 3:
+
+<http://example.org/director/ss>
+  <http://example.org/name>
+      "Steven"
+  <http://example.org/surname>
+      "Spielberg"
+
+
+<http://example.org/director/gl>
+  <http://example.org/name>
+      "/George"
+  <http://example.org/surname>
+      "Lucas"
+
+<http://example.org/Film/ijlc>
+  <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+    <http://example.org/Film>
+  <http://example.org/Title>
+    "Indiana Jones and the Last Crusade"
+  <http://example.org/director>
+    <http://example.org/director/ss>
+
+<http://example.org/Film/rla>
+  <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+    <http://example.org/Film>
+  <http://example.org/Title>
+    "Raiders of the Lost Ark"
+  <http://example.org/director>
+    <http://example.org/director/ss>
+
+
+<http://example.org/Film/swsc>
+  <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+    <http://example.org/Film>
+  <http://example.org/Title>
+    "Star Wars: Episode II – Attack of the_Clones"
+  <http://example.org/director>
+    <http://example.org/director/gl>
+
+<http://example.org/Film/swrm>
+  <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+    <http://example.org/Film>
+  <http://example.org/Title>
+    "Star Wars: Episode I – The Phantom Menace"
+  <http://example.org/director>
+    <http://example.org/director/gl>
+
+<http://example.org/Film/sw>
+  <http://www.w3.org/1999/02/22-rdf-syntax-ns#type>
+    <http://example.org/Film>
+  <http://example.org/Title>
+    "Star Wars (film)"
+  <http://example.org/director>
+    <http://example.org/director/gl>
+
+PREFIX ex: <http://example.org/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+select distinct ?director where {
+?F rdf:type ex:Film.
+?F dbo:director ?director.
+}
+
+PREFIX ex: <http://example.org/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+select ?director where {
+?F rdf:type ex:Film.
+?F dbo:director ?director.
+}
+
+Exercise 4:
+
+TASK 1:
+
+  Ω1 {
+    μ1 = {(?x, PANKOW)}
+    μ2 = {(?x, NEUKOLLN)}
+  }
+  P = {?x :borough :Berlin}
+  μ1(?x) = PANKOW  dom(μ1) = {?x}  var(P) = {?x}  σ = 0 OK
+  μ1(σ(P)) = :PANKOW :BOROUGH :BERLIN
+
+  μ2(?x) = NEUKOLLN  dom(μ2) = {?x}  var(P) = {?x}  σ = 0 OK
+  μ2(σ(P)) = :NEUKOLLN :BOROUGH :BERLIN
+
+  Ω2 {
+    μ1 = {(?x, BERLIN)}
+  }
+  P = {?x :capital :Germany}
+  μ1(?x) = BERLIN  dom(μ1) = {?x}  var(P) = {?x}  σ = 0 OK
+  μ1(σ(P)) = :BERLIN :CAPITAL :GERMANY
+
+  Ω3 {
+    μ1 = {(?x, BERLIN), (?name, "BERLIN")}
+    μ2 = {(?x, NEUKOLLN), (?name, "NEUKOLLN"@en)}
+    μ3 = {(?x, NEUKOLLN), (?name, "NEUKÖLLN"@de)}
+  }
+  P = {?x :name ?name}
+  μ1(?x) = BERLIN  dom(μ1) = {?x, ?name) = {?x}  var(P) = {?x, ?name}  σ = 0 OK μ1(σ(P)) = :BERLIN :name :"BERLIN"
+  μ2(?x) = NEUKOLLN  dom(μ2) = {?x, ?name) = {?x}  var(P) = {?x, ?name}  σ = 0 OK μ2(σ(P)) = :NEUKOLLN :name :"NEUKOLLN"@en
+  μ3(?x) = NEUKOLLN  dom(μ3) = {?x, ?name) = {?x}  var(P) = {?x, ?name}  σ = 0 OK μ3(σ(P)) = :NEUKOLLN :name :"NEUKÖLLN"@de
+
+TASK 2:
+UNION(Ω1, Ω2) = {(:PANKOW :BOROUGH :BERLIN), (:NEUKOLLN :BOROUGH :BERLIN), (:BERLIN :CAPITAL :GERMANY)}
+JOIN(UNION(Ω1, Ω2), Ω3) = not compatible domain because we have only {?x} in the domain of Ω1, Ω2's μ and {?x, ?name} in the domain of Ω3's μ

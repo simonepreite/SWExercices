@@ -1,0 +1,106 @@
+@prefix : <http://www.semanticweb.org/anna/ontologies/2018/11/es4#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.example.com/> .
+
+<http://www.example.com/> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.example.com/isToppingOf
+:isToppingOf rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf owl:topObjectProperty ;
+             owl:inverseOf <http://www.example.com/#hasTopping> ;
+             rdf:type owl:FunctionalProperty .
+
+
+###  http://www.example.com/#hasTopping
+<http://www.example.com/#hasTopping> rdf:type owl:ObjectProperty ,
+                                              owl:InverseFunctionalProperty ;
+                                     rdfs:domain <http://www.example.com/#Pizza> ;
+                                     rdfs:range <http://www.example.com/#Topping> .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.example.com/Fish
+:Fish rdf:type owl:Class ;
+      rdfs:subClassOf <http://www.example.com/#Topping> ;
+      owl:disjointWith <http://www.example.com/#Meat> ,
+                       <http://www.example.com/#Vegetable> .
+
+
+###  http://www.example.com/NonVegetarianPizza
+:NonVegetarianPizza rdf:type owl:Class ;
+                    owl:equivalentClass [ owl:intersectionOf ( <http://www.example.com/#Pizza>
+                                                               [ rdf:type owl:Class ;
+                                                                 owl:complementOf :VegetarianPizza
+                                                               ]
+                                                             ) ;
+                                          rdf:type owl:Class
+                                        ] ;
+                    rdfs:subClassOf <http://www.example.com/#Pizza> ;
+                    owl:disjointWith :VegetarianPizza .
+
+
+###  http://www.example.com/SalamiPizza
+:SalamiPizza rdf:type owl:Class ;
+             owl:equivalentClass [ owl:intersectionOf ( <http://www.example.com/#Pizza>
+                                                        [ rdf:type owl:Restriction ;
+                                                          owl:onProperty <http://www.example.com/#hasTopping> ;
+                                                          owl:someValuesFrom <http://www.example.com/#Meat>
+                                                        ]
+                                                      ) ;
+                                   rdf:type owl:Class
+                                 ] ;
+             rdfs:subClassOf <http://www.example.com/#Pizza> .
+
+
+###  http://www.example.com/VegetarianPizza
+:VegetarianPizza rdf:type owl:Class ;
+                 owl:equivalentClass [ owl:intersectionOf ( <http://www.example.com/#Pizza>
+                                                            [ rdf:type owl:Class ;
+                                                              owl:complementOf [ rdf:type owl:Restriction ;
+                                                                                 owl:onProperty <http://www.example.com/#hasTopping> ;
+                                                                                 owl:someValuesFrom :Fish
+                                                                               ]
+                                                            ]
+                                                            [ rdf:type owl:Class ;
+                                                              owl:complementOf [ rdf:type owl:Restriction ;
+                                                                                 owl:onProperty <http://www.example.com/#hasTopping> ;
+                                                                                 owl:someValuesFrom <http://www.example.com/#Meat>
+                                                                               ]
+                                                            ]
+                                                          ) ;
+                                       rdf:type owl:Class
+                                     ] ;
+                 rdfs:subClassOf <http://www.example.com/#Pizza> .
+
+
+###  http://www.example.com/#Meat
+<http://www.example.com/#Meat> rdf:type owl:Class ;
+                               rdfs:subClassOf <http://www.example.com/#Topping> ;
+                               owl:disjointWith <http://www.example.com/#Vegetable> .
+
+
+###  http://www.example.com/#Pizza
+<http://www.example.com/#Pizza> rdf:type owl:Class .
+
+
+###  http://www.example.com/#Topping
+<http://www.example.com/#Topping> rdf:type owl:Class .
+
+
+###  http://www.example.com/#Vegetable
+<http://www.example.com/#Vegetable> rdf:type owl:Class ;
+                                    rdfs:subClassOf <http://www.example.com/#Topping> .
+
+
+###  Generated by the OWL API (version 4.5.6.2018-09-06T00:27:41Z) https://github.com/owlcs/owlapi

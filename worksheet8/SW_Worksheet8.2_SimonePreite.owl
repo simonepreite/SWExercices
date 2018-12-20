@@ -1,0 +1,128 @@
+@prefix : <http://www.semanticweb.org/anna/ontologies/2018/11/SW_Worksheet8_Avena#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/simone//ontologies/2018/11/SW_Worksheet8_SimonePreite> .
+
+<http://www.semanticweb.org/simone//ontologies/2018/11/SW_Worksheet8_SimonePreite> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#hasChild
+<http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#hasChild> rdf:type owl:ObjectProperty ;
+                                                                                           owl:inverseOf <http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#hasParent> .
+
+
+###  http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#hasGrandparent
+<http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#hasGrandparent> rdf:type owl:ObjectProperty ;
+                                                                                                 rdfs:subPropertyOf owl:topObjectProperty ;
+                                                                                                 owl:propertyChainAxiom ( <http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#hasParent>
+                                                                                                                          <http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#hasParent>
+                                                                                                                        ) .
+
+
+###  http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#hasParent
+<http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#hasParent> rdf:type owl:ObjectProperty ;
+                                                                                            rdfs:subPropertyOf owl:topObjectProperty .
+
+
+###  http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#hasPet
+<http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#hasPet> rdf:type owl:ObjectProperty ;
+                                                                                         rdfs:subPropertyOf owl:topObjectProperty ;
+                                                                                         owl:inverseOf <http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#isPetOf> .
+
+
+###  http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#hasSpouse
+<http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#hasSpouse> rdf:type owl:ObjectProperty ;
+                                                                                            rdfs:subPropertyOf owl:topObjectProperty ;
+                                                                                            rdf:type owl:SymmetricProperty .
+
+
+###  http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#isPetOf
+<http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#isPetOf> rdf:type owl:ObjectProperty ;
+                                                                                          rdfs:subPropertyOf owl:topObjectProperty .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#Animal
+<http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#Animal> rdf:type owl:Class .
+
+
+###  http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#Cat
+<http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#Cat> rdf:type owl:Class ;
+                                                                                      rdfs:subClassOf <http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#Animal> .
+
+
+###  http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#Dog
+<http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#Dog> rdf:type owl:Class ;
+                                                                                      rdfs:subClassOf <http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#Animal> .
+
+
+###  http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#Person
+<http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#Person> rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#Abe
+<http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#Abe> rdf:type owl:NamedIndividual ,
+                                                                                               <http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#Person> .
+
+
+###  http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#Bart
+<http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#Bart> rdf:type owl:NamedIndividual ,
+                                                                                                <http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#Person> .
+
+
+###  http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#Homer
+<http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#Homer> rdf:type owl:NamedIndividual ,
+                                                                                                 <http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#Person> ;
+                                                                                        <http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#hasChild> <http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#Bart> ,
+                                                                                                                                                                                   <http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#Lisa> ,
+                                                                                                                                                                                   <http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#Maggie> ;
+                                                                                        <http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#hasParent> <http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#Abe> ;
+                                                                                        <http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#hasPet> <http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#Snowball_II> ,
+                                                                                                                                                                                 <http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#Santa's_Little_Helper> .
+
+
+###  http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#Lisa
+<http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#Lisa> rdf:type owl:NamedIndividual ,
+                                                                                                <http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#Person> .
+
+
+###  http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#Maggie
+<http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#Maggie> rdf:type owl:NamedIndividual ,
+                                                                                                  <http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#Person> .
+
+
+###  http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#Marge
+<http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#Marge> rdf:type owl:NamedIndividual ,
+                                                                                                 <http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#Person> ;
+                                                                                        <http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#hasChild> <http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#Bart> ,
+                                                                                                                                                                                   <http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#Lisa> ,
+                                                                                                                                                                                   <http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#Maggie> ;
+                                                                                        <http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#hasSpouse> <http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#Homer> .
+
+
+###  http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#Snowball_II
+<http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#Snowball_II> rdf:type owl:NamedIndividual ,
+                                                                                                       <http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#Animal> ,
+                                                                                                       <http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#Cat> .
+
+
+###  http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#Santa's_Little_Helper
+<http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#Santa's_Little_Helper> rdf:type owl:NamedIndividual ,
+                                                                                                                 <http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#Animal> ,
+                                                                                                                 <http://www.semanticweb.org/simone/ontologies/2018/11/SW_Worksheet8_SimonePreite#Dog> .
+
+
+###  Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi
